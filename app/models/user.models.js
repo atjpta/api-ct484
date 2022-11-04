@@ -6,27 +6,12 @@ const schema = mongoose.Schema(
             type: String,
             require: [true, "username is required"],
         },
-        avatar_Url: {
-            type: String,
-            default: 'http://localhost:8088/api/image/cuoi.gif'
-        },     
-        email: {
-            type: String,
-            trim: true,
-            lowercas: true,
-        },
+        // email: {
+        //     type: String,
+        //     trim: true,
+        //     lowercas: true,
+        // },
         password: String,
-        name: String,
-        introduce: String,
-        date: String,
-        premium: {
-            type: Boolean,
-            default: false,
-        },
-        follow: [{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "user"
-        }],
         roles: [
             {
               type: mongoose.Schema.Types.ObjectId,
