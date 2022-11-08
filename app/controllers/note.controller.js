@@ -7,7 +7,9 @@ exports.getNoteByUser = async (req, res, next) => {
         const notes = await Note.find({ id_user: id }).sort({ createdAt : -1}).select([
             "name",
             'content',
-            'createdAt'
+            'createdAt',
+            'title',
+            'id_user'
         ]);
         if (!notes) {
             return next(res.status(404).json({ Message: "không thể tìm thấy note" }));
