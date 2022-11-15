@@ -1,11 +1,13 @@
-const auth  = require('./auth.routes')
+const auth = require('./auth.routes')
 const users = require('./users.routes')
 const image = require('./image.routes');
 const note = require('./note.routes')
+const mission = require('./mission.routes')
 
-module.exports = {
-    auth,
-    users,
-    image,
-    note,
+exports.Start = (app) => {
+    auth(app)
+    users(app)
+    image(app)
+    note(app)
+    mission(app)
 }

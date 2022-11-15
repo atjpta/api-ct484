@@ -17,10 +17,7 @@ app.get("/", (req, res) => {
 });
 
 
-route.auth(app);
-route.users(app);
-route.image(app);
-route.note(app);
+route.Start(app)
 
 app.use((req, res, next) => {
     res.header("Access-Control-Allow-Origin", "*");
