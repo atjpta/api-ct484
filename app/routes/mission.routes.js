@@ -9,7 +9,7 @@ module.exports = (app) => {
         .post([authJwt.verifyToken], mission.createMission)
         // .post(mission.createMission)
 
-        .delete(mission.deleteAllMission)
+        .delete([authJwt.verifyToken], mission.deleteAllMission)
 
     router.route("/:id")
         .get([authJwt.verifyToken], mission.getMissionByUser)
@@ -17,6 +17,12 @@ module.exports = (app) => {
 
         .put([authJwt.verifyToken], mission.updateMission)
         .delete([authJwt.verifyToken], mission.deleteMission)
+        // .delete(mission.deleteMission)
+
+
+    router.route('/completed/:id')
+        .put([authJwt.verifyToken], mission.completedMission)
+        // .put(mission.completedMission)
 
     app.use("/api/mission", router);
 };

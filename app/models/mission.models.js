@@ -12,6 +12,10 @@ const schema = mongoose.Schema(
         startTime: String,
         finishDate: String,
         finishTime: String,
+        completed: {
+            type: Boolean,
+            default: false,
+        }
     },
 );
 

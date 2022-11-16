@@ -1,4 +1,5 @@
 const Mission = require("../models/mission.models");
+const mongoose = require("mongoose");
 
 exports.getMissionByUser = async (req, res, next) => {
     const { id } = req.params;
@@ -68,6 +69,32 @@ exports.updateMission = async (req, res, next) => {
 }
 
 
+exports.completedMission = async (req, res, next) => {
+
+    const { id } = req.params;
+    const condition = {
+        _id: id && mongoose.isValidObjectId(id) ? id : null,
+    };
+
+    try {
+        const document = await Mission.findByIdAndUpdate(condition, { completed: true }, {
+            new: true
+        });
+        if (!document) {
+            return next(res.status(404).json({ Message: "không thể tìm thấy completedMission"  }));
+        }
+        return res.send({ message: "đã đánh dấu hoàn thành"});
+    }
+    catch (error) {
+        console.log(error);
+        return next(
+            res.status(500).json({ Message: ` không thể đánh dấu hoàn thành note với id = ${req.params.id} ++ ${error}` })
+        )
+    }
+}
+
+
+
 exports.deleteMission = async (req, res, next) => {
     const { id } = req.params;
     const condition = {
@@ -77,7 +104,7 @@ exports.deleteMission = async (req, res, next) => {
     try {
         const document = await Mission.findOneAndDelete(condition);
         if (!document) {
-            return next(res.status(404).json({ Message: "không thể tìm thấy Mission" }));
+            return next(res.status(404).json({ Message: "không thể tìm thấy deleteMission" }));
         }
         return res.send({ message: "đã xóa Mission thành công" });
     }
