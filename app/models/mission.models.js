@@ -13,8 +13,8 @@ const schema = mongoose.Schema(
         finishDate: String,
         finishTime: String,
         completed: {
-            type: Boolean,
-            default: false,
+            type: String,
+            default: 0,
         }
     },
 );
