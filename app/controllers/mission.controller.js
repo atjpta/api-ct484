@@ -16,6 +16,21 @@ exports.getMissionByUser = async (req, res, next) => {
     }
 };
 
+exports.getMissionByUserFinish = async (req, res, next) => {
+    const { id } = req.params;
+    try {
+        const Missions = await Mission.find({ id_user: id }).sort({ finishDate: 1, finishTime: 1 })
+        if (!Mission) {
+            return next(res.status(404).json({ Message: "không thể tìm thấy getMissionByUser" }));
+        }
+        return res.json(Missions);
+    } catch (error) {
+        next(
+            res.status(500).json({ Message: ` không thể lấy getMissionByUser cua user với id = ${req.params.id} ++ ${error} ` })
+        )
+    }
+};
+
 
 exports.createMission = async (req, res, next) => {
     const mission = new Mission({

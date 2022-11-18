@@ -19,6 +19,8 @@ module.exports = (app) => {
         .delete([authJwt.verifyToken], mission.deleteMission)
         // .delete(mission.deleteMission)
 
+    router.route("/finishtime/:id")
+        .get([authJwt.verifyToken], mission.getMissionByUserFinish)
 
     router.route('/completed/:id')
         .put([authJwt.verifyToken], mission.completedMission)
