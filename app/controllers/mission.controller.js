@@ -77,7 +77,7 @@ exports.completedMission = async (req, res, next) => {
     };
 
     try {
-        const document = await Mission.findByIdAndUpdate(condition, { completed: true }, {
+        const document = await Mission.findByIdAndUpdate(condition, { completed: 1 }, {
             new: true
         });
         if (!document) {
